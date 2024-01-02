@@ -1,7 +1,4 @@
 #!/usr/bin/python3
 
-# Constructing the alphabet string using a loop
-alphabet = ''.join([chr(letter) for letter in range(97, 123)])
-
-# Printing the entire alphabet string in one go
-print(f"{alphabet}", end='')
+# Using a single print function and a loop to construct the string to be printed
+print("".join(chr(letter) for letter in range(97, 123)), end='')
