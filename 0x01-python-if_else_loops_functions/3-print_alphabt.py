@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 
-# ASCII values for 'a' to 'z'
-for letter in range(97, 123):
-    # Check if the letter is not 'e' and not 'q'
-    if letter != 101 and letter != 113:
-        print("{}".format(chr(letter)), end='')
+# Printing the entire alphabet string without 'e' and 'q' using string format
+print("".join(chr(c) for c in range(97, 123) if c != 101 and c != 113), end='')
 
-# Print a newline character after all characters are printed
+# Printing a newline character
 print()
