@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-# Printing the entire alphabet string without 'e' and 'q' using string format
-print("".join(chr(c) for c in range(97, 123) if c != 101 and c != 113), end='')
+# Constructing the alphabet string without 'e' and 'q' using list comprehension
+alphabet = [chr(c) for c in range(97, 123) if c != 101 and c != 113]
 
-# Printing a newline character
-print()
+# Using a single print function with string format to print the entire alphabet string
+print("".join(alphabet))
