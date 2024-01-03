@@ -6,7 +6,7 @@ def uppercase(str):
         if 'a' <= char <= 'z':
             char = chr(ord(char) - 32)
         result += char
-    print(result)
+    print("{}".format(result))
 
 if __name__ == "__main__":
     uppercase("best")
