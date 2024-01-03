@@ -2,7 +2,7 @@
 
 def islower(c):
     # Check if the character 'c' is lowercase
-    return ('a' <= c <= 'z')
+    return ord('a') <= ord(c) <= ord('z')
 
 if __name__ == "__main__":
     test_cases = ['a', 'H', 'A', '3', 'g', '"']
