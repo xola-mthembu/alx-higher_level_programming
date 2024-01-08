@@ -9,6 +9,7 @@ def print_reversed_list_integer(my_list=[]):
         for i in reversed(my_list):
             print("{:d}".format(i))
 
+
 if __name__ == "__main__":
     # This is an example usage that you can test locally
     my_list = [1, 2, 3, 4, 5]
