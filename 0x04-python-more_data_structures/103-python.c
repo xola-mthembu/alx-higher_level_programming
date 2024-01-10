@@ -4,6 +4,10 @@
 #include <bytesobject.h>
 #include <stdio.h>
 
+/**
+ * print_python_list - Prints basic info about Python lists
+ * @p: Python list object
+ */
 void print_python_list(PyObject *p)
 {
 	Py_ssize_t size, alloc, i;
@@ -29,6 +33,10 @@ void print_python_list(PyObject *p)
 	}
 }
 
+/**
+ * print_python_bytes - Prints basic info about Python bytes objects
+ * @p: Python bytes object
+ */
 void print_python_bytes(PyObject *p)
 {
 	Py_ssize_t size, i;
@@ -56,6 +64,10 @@ void print_python_bytes(PyObject *p)
 	printf("\n");
 }
 
+/**
+ * main - Entry point for the program
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	return (0);
