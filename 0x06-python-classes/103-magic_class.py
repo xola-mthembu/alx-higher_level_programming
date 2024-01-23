@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import math
 
-
 class MagicClass:
-    """A class that reps a circle with methods to cal its area and circ."""
+    """A class that represents a circle with methods to calculate its area and circumference."""
 
     def __init__(self, radius=0):
         """Initialize the MagicClass with a radius.
@@ -14,13 +13,9 @@ class MagicClass:
         Raises:
             TypeError: If the radius is not a number.
         """
-        self.__check_type(radius)
-        self.__radius = radius
-
-    def __check_type(self, value):
-        """Check if value is an int or float, raise TypeError if not."""
-        if type(value) not in [int, float]:
+        if type(radius) not in [int, float]:
             raise TypeError('radius must be a number')
+        self.__radius = radius
 
     def area(self):
         """Calculate the area of the circle.
