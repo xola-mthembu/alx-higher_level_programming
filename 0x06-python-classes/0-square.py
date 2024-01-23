@@ -4,6 +4,7 @@
 This module provides a simple Square class with no functionality.
 """
 
+
 class Square:
     """An empty class that defines a square.
 
