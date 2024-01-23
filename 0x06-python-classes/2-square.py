@@ -2,15 +2,15 @@
 """Module for Square class.
 
 This module provides a Square class with a private instance attribute 'size'
-with proper validation.
+and includes validation for this attribute.
 """
-
 
 class Square:
     """Class that defines a square.
 
-    This class has a private instance attribute 'size' with validation to ensure
-    that it is an integer and greater than or equal to 0.
+    This class has a private instance attribute 'size'. The 'size' attribute
+    has validations to ensure it is an integer and is greater than or equal
+    to 0.
 
     Attributes:
         __size (int): The size of the square, must be an integer and >= 0.
