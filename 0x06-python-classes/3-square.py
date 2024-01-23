@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module for Square class.
 
-This module provides a Square class with a private instance attribute 'size'
+This module provides a Square class with a private instance att 'size'
 and a public method to calculate the area of the square.
 """
 
@@ -9,7 +9,7 @@ and a public method to calculate the area of the square.
 class Square:
     """Class that defines a square.
 
-    This class has a private instance attribute 'size' and a method to calculate
+    This class has a private instance attr 'size' and a method to calculate
     the area of the square.
 
     Attributes:
