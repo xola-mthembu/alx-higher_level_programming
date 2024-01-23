@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module for Square class.
 
-This module provides a Square class with a private instance attribute 'size'
+This module provides a Square class with a private instance att 'size'
 with proper validation.
 """
 
@@ -9,7 +9,7 @@ with proper validation.
 class Square:
     """Class that defines a square.
 
-    This class has a private instance attribute 'size' with validation to ensure
+    This class has a private instance att 'size' with validation to ensure
     that it is an integer and greater than or equal to 0.
 
     Attributes:
