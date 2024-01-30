@@ -1,0 +1,2 @@
+256
+The CPython implementation preallocates 256 small positive integers and 256 small negative integers on startup to optimize performance. So before the execution of the second print statement, 256 + 256 = 512 integer objects have already been created in memory.
