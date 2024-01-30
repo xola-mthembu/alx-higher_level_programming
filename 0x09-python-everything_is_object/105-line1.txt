@@ -1,9 +1,1 @@
-262
-Explanation:
-
-Before line 2 executes, 262 int objects have already been created and are still in memory.
-This is due to Python's int object caching mechanism.
-CPython pre-allocates and caches int objects for integers in the range from -5 to 256, inclusive.
-This optimization improves performance by reusing existing objects instead of creating new ones for frequently used small integers.
-The constants NSMALLPOSINTS and NSMALLNEGINTS define this caching range within the CPython implementation.
-Therefore, even though the script hasn't explicitly created any int objects yet, the interpreter has already cached 256 positive integers (-5 to 255) and 6 negative integers (-5 to 0), totaling 262 int objects.
+3
