@@ -11,11 +11,14 @@ class Rectangle(Base):
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
+        """
+        Initialize a new Rectangle instance.
+        """
         super().__init__(id)
-        self.width = width
-        self.height = height
-        self.x = x
-        self.y = y
+        self.width = width  # Uses the width setter
+        self.height = height  # Uses the height setter
+        self.x = x  # Uses the x setter
+        self.y = y  # Uses the y setter
 
     @property
     def width(self):
@@ -66,13 +69,31 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
+        """
+        Returns the area value of the Rectangle instance.
+        """
         return self.width * self.height
 
     def display(self):
+        """
+        Prints the Rectangle instance with the character '#' to stdout,
+        taking care of x and y.
+        """
         print("\n" * self.y, end="")
         for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
 
     def __str__(self):
+        """
+        Returns the string representation of the Rectangle instance.
+        """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args):
+        """
+        Updates the Rectangle attributes.
+        """
+        attrs = ['id', 'width', 'height', 'x', 'y']
+        for attr, arg in zip(attrs, args):
+            setattr(self, attr, arg)
