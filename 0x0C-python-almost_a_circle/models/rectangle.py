@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module provides a Rectangle class that inherits from Base.
+Module provides a Rectangle class that inherits from Base.
 """
 from models.base import Base
 
@@ -13,6 +13,9 @@ class Rectangle(Base):
     def __init__(self, width, height, x=0, y=0, id=None):
         """
         Initialize a new Rectangle instance.
+        - width and height must be private. No getter or setter.
+        - x and y must be private. No getter or setter.
+        - Call the super class with id.
         """
         super().__init__(id)
         self.width = width
@@ -22,12 +25,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Gets the width of the Rectangle."""
+        """Get the width of the Rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Sets the width of the Rectangle."""
+        """Set the width of the Rectangle."""
         if type(value) != int:
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -36,12 +39,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Gets the height of the Rectangle."""
+        """Get the height of the Rectangle."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Sets the height of the Rectangle."""
+        """Set the height of the Rectangle."""
         if type(value) != int:
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -50,12 +53,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Gets the x coordinate of the Rectangle."""
+        """Get the x of the Rectangle."""
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Sets the x coordinate of the Rectangle."""
+        """Set the x of the Rectangle."""
         if type(value) != int:
             raise TypeError("x must be an integer")
         if value < 0:
@@ -64,12 +67,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Gets the y coordinate of the Rectangle."""
+        """Get the y of the Rectangle."""
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Sets the y coordinate of the Rectangle."""
+        """Set the y of the Rectangle."""
         if type(value) != int:
             raise TypeError("y must be an integer")
         if value < 0:
@@ -77,37 +80,32 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """
-        Returns the area value of the Rectangle instance.
-        """
+        """Return the area of the Rectangle."""
         return self.width * self.height
 
     def display(self):
-        """
-        Prints the Rectangle instance with the character '#' to stdout,
-        taking care of x and y.
-        """
+        """Print the Rectangle using the '#' character."""
         print("\n" * self.y, end="")
         for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
 
     def __str__(self):
-        """
-        Returns the string representation of the Rectangle instance.
-        """
+        """Return the string representation of the Rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height)
 
     def update(self, *args, **kwargs):
-        """
-        Updates the Rectangle attributes with non-keyword
-        arguments first, then keyword arguments.
-        """
+        """Update the Rectangle attributes."""
         attrs = ['id', 'width', 'height', 'x', 'y']
-        if args and len(args) > 0:
-            for attr, arg in zip(attrs, args):
-                setattr(self, attr, arg)
-        elif kwargs:
+        if args:
+            for attr, value in zip(attrs, args):
+                setattr(self, attr, value)
+        else:
             for key, value in kwargs.items():
-                if key in attrs:
+                if hasattr(self, key):
                     setattr(self, key, value)
+
+    def to_dictionary(self):
+        """Return the dictionary representation of the Rectangle."""
+        return {'id': self.id, 'width': self.width, 'height': self.height,
+                'x': self.x, 'y': self.y}
