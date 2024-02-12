@@ -1,15 +1,17 @@
 #!/usr/bin/python3
 """
-Module provides a Base class for all other classes in the project.
-This serves as the foundation class, with common functionality.
+This module provides a Base class.
+The Base class serves as the foundation for all other classes in this project.
 """
 import json
 
 
 class Base:
+    """A base class for all models in the project."""
     _nb_objects = 0
 
     def __init__(self, id=None):
+        """Initialize a new Base instance."""
         if id is not None:
             self.id = id
         else:
@@ -18,8 +20,7 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        if list_dictionaries is None or len(list_dictionaries) == 0:
+        """Return the JSON string rep of list_dictionaries."""
+        if not list_dictionaries:
             return "[]"
         return json.dumps(list_dictionaries)
-
-    # Continue with the rest of the Base class implementation...
