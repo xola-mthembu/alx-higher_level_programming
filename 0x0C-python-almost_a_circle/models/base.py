@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 This module provides a Base class.
-The Base class serves as the foundation for all other classes in this project.
 """
 import json
 
@@ -11,7 +10,6 @@ class Base:
     _nb_objects = 0
 
     def __init__(self, id=None):
-        """Initialize a new Base instance."""
         if id is not None:
             self.id = id
         else:
@@ -20,7 +18,18 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """Return the JSON string rep of list_dictionaries."""
-        if not list_dictionaries:
+        if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
         return json.dumps(list_dictionaries)
+
+    @classmethod
+    def save_to_file(cls, list_objs):
+        filename = cls.__name__ + ".json"
+        list_dicts = []
+        if list_objs:
+            list_dicts = [obj.to_dictionary() for obj in list_objs]
+        json_string = cls.to_json_string(list_dicts)
+        with open(filename, 'w') as f:
+            f.write(json_string)
+
+# Include other previously defined methods...
