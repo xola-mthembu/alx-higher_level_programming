@@ -4,6 +4,7 @@ This module provides a Base class.
 Base class is the foundation of all other classes in this project.
 """
 import json
+import os
 
 
 class Base:
@@ -47,3 +48,13 @@ class Base:
                       if list_objs else [])
         with open(filename, 'w') as f:
             f.write(cls.to_json_string(list_dicts))
+
+    @classmethod
+    def load_from_file(cls):
+        """Returns a list of instances from a file."""
+        filename = f"{cls.__name__}.json"
+        if not os.path.isfile(filename):
+            return []
+        with open(filename, 'r') as f:
+            list_dicts = cls.from_json_string(f.read())
+        return [cls.create(**dct) for dct in list_dicts]
