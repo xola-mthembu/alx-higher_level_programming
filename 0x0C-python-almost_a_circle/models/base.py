@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """
-This module provides a Base class as the foundation
-for all other classes in this project, focusing on PEP 8 compliance
-and proper CSV handling.
+This module provides the Base class as a foundation for all other classes
+in the project, ensuring compliance with PEP 8 styling and functionality for
+JSON serialization/deserialization, file handling, and visual representation
+using Turtle graphics.
 """
 import json
 import csv
 import os
+import turtle
 
 
 class Base:
@@ -65,10 +67,8 @@ class Base:
         """Serializes in CSV format and saves it to a file."""
         filename = f"{cls.__name__}.csv"
         with open(filename, 'w', newline='') as csvfile:
-            if cls.__name__ == "Rectangle":
-                fieldnames = ['id', 'width', 'height', 'x', 'y']
-            elif cls.__name__ == "Square":
-                fieldnames = ['id', 'size', 'x', 'y']
+            fieldnames = ['id', 'width', 'height', 'x', 'y'] \
+                if cls.__name__ == "Rectangle" else ['id', 'size', 'x', 'y']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for obj in list_objs:
@@ -81,15 +81,28 @@ class Base:
         if not os.path.isfile(filename):
             return []
         with open(filename, 'r', newline='') as csvfile:
-            if cls.__name__ == "Rectangle":
-                fieldnames = ['id', 'width', 'height', 'x', 'y']
-            elif cls.__name__ == "Square":
-                fieldnames = ['id', 'size', 'x', 'y']
-            reader = csv.DictReader(csvfile, fieldnames=fieldnames)
-            list_dicts = [row for row in reader]
-            # Correctly handle the conversion of string to appropriate type
-            for dct in list_dicts:
-                for key in dct:
-                    if dct[key].isdigit():
-                        dct[key] = int(dct[key])
-            return [cls.create(**dct) for dct in list_dicts]
+            reader = csv.DictReader(csvfile)
+            return [cls.create(**{k: int(v) for k, v in row.items()})
+                    for row in reader]
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draws Rectangles and Squares using Turtle graphics."""
+        turtle.speed(1)
+        for rect in list_rectangles:
+            turtle.penup()
+            turtle.goto(rect.x, rect.y)
+            turtle.pendown()
+            for _ in range(2):
+                turtle.forward(rect.width)
+                turtle.right(90)
+                turtle.forward(rect.height)
+                turtle.right(90)
+        for sq in list_squares:
+            turtle.penup()
+            turtle.goto(sq.x, sq.y)
+            turtle.pendown()
+            for _ in range(4):
+                turtle.forward(sq.size)
+                turtle.right(90)
+        turtle.done()
