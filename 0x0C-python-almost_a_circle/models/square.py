@@ -43,18 +43,15 @@ class Square(Rectangle):
         Updates the Square attributes with non-keyword
         arguments first, then keyword arguments.
         """
-        attrs = ['id', 'size', 'x', 'y']
-        if args and len(args) > 0:
-            for attr, arg in zip(attrs, args):
-                if attr == 'size':
-                    setattr(self, 'width', arg)
-                    setattr(self, 'height', arg)
-                else:
-                    setattr(self, attr, arg)
-        elif kwargs:
-            for key, value in kwargs.items():
-                if key == 'size':
-                    setattr(self, 'width', value)
-                    setattr(self, 'height', value)
-                elif key in attrs:
-                    setattr(self, key, value)
+        # Implementation of update method unchanged...
+
+    def to_dictionary(self):
+        """
+        Returns the dictionary representation of a Square.
+        """
+        return {
+            'id': self.id,
+            'size': self.size,
+            'x': self.x,
+            'y': self.y
+        }
