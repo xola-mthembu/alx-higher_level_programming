@@ -10,6 +10,7 @@ class Base:
     _nb_objects = 0
 
     def __init__(self, id=None):
+        """Initialize a new Base instance."""
         if id is not None:
             self.id = id
         else:
@@ -18,18 +19,16 @@ class Base:
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        if list_dictionaries is None or len(list_dictionaries) == 0:
+        """Return the JSON string representation of list_dictionaries."""
+        if not list_dictionaries:
             return "[]"
         return json.dumps(list_dictionaries)
 
-    @classmethod
-    def save_to_file(cls, list_objs):
-        filename = cls.__name__ + ".json"
-        list_dicts = []
-        if list_objs:
-            list_dicts = [obj.to_dictionary() for obj in list_objs]
-        json_string = cls.to_json_string(list_dicts)
-        with open(filename, 'w') as f:
-            f.write(json_string)
+    @staticmethod
+    def from_json_string(json_string):
+        """Returns the list represented by json_string."""
+        if json_string is None or json_string == "":
+            return []
+        return json.loads(json_string)
 
-# Include other previously defined methods...
+# Continue with other previously defined methods...
