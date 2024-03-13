@@ -7,6 +7,6 @@ USE `hbtn_0c_0`;
 -- Convert first_table table to UTF8
 ALTER TABLE `first_table` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
--- Convert name field in first_table to UTF8
-ALTER TABLE `first_table` CHANGE `name` `name` VARCHAR(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- Ensure the name field in first_table uses the table's default character set and collation
+ALTER TABLE `first_table` MODIFY `name` VARCHAR(256) COLLATE utf8mb4_unicode_ci;
 
