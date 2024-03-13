@@ -1,7 +1,7 @@
 -- Display the top 3 cities with the highest average temperature in July and August
 SELECT city, AVG(value) AS avg_temp
 FROM temperatures
-WHERE MONTH(record_date) IN (7, 8)
+WHERE MONTH(date) IN (7, 8)
 GROUP BY city
 ORDER BY avg_temp DESC
 LIMIT 3;
