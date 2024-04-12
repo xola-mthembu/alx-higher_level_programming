@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """
-A script that lists all states with names starting with 'N' from the
-database `hbtn_0e_0_usa`.
-This script accepts three arguments: the MySQL username, password, and database name.
+A script that lists all states with names starting with 'N' from the database `hbtn_0e_0_usa`.
+The script takes three arguments: the MySQL username, password, and database name.
 """
 
 import MySQLdb
@@ -10,7 +9,7 @@ import sys
 
 def filter_states(username, password, dbname):
     """
-    Connects to the MySQL database and prints states starting with 'N' in ascending order by states.id.
+    Connects to the MySQL database and prints all states starting with 'N' in ascending order by states.id.
     """
     try:
         db = MySQLdb.connect(host="127.0.0.1", port=3306, user=username,
