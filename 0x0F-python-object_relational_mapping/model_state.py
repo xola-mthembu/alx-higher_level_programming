@@ -1,21 +1,17 @@
 #!/usr/bin/python3
 """
-Contains the class def of a State and instance Base = declarative_base().
+State model that contains the class definition of a State and an instance Base.
 """
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
 
 class State(Base):
-    """
-    Represents a state for a MySQL database.
-    __tablename__: the name of the MySQL table to store States.
-    id: unique integer, can't be null and is a primary key.
-    name: string of max 128 characters, can't be null.
-    """
     __tablename__ = 'states'
-    id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
+    id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     name = Column(String(128), nullable=False)
+    cities = relationship("City", backref="state", cascade="all, delete")
