@@ -7,6 +7,11 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
+    # Check if the required arguments are provided
+    if len(sys.argv) != 4:
+        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
+        sys.exit(1)
+
     # Connect to the database
     db = MySQLdb.connect(
         host="localhost",
@@ -27,4 +32,5 @@ if __name__ == "__main__":
         print(row)
 
     # Close the connection
+    cursor.close()
     db.close()
