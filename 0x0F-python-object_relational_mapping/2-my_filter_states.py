@@ -1,37 +1,43 @@
 #!/usr/bin/python3
 """
-Script that takes in an argument and displays all values in the states
-table of hbtn_0e_0_usa where name matches the argument.
+This module filters states by exact name match from the database hbtn_0e_0_usa.
 """
+
 import sys
 import MySQLdb
 
 
-if __name__ == "__main__":
-    # Get the command line arguments
+def filter_states_by_user_input():
+    """
+    Connects to the database and filters states by user input.
+    """
     username = sys.argv[1]
     password = sys.argv[2]
-    db_name = sys.argv[3]
-    state_name = sys.argv[4]
+    database = sys.argv[3]
+    state_searched = sys.argv[4]
 
-    # Connect to the MySQL server
+    # Connect to the MySQL database
     db = MySQLdb.connect(host="localhost", port=3306, user=username,
-                         passwd=password, db=db_name)
+                         passwd=password, db=database)
 
     # Create a cursor object
-    cur = db.cursor()
+    cursor = db.cursor()
 
-    # Execute the SQL query with user input
-    cur.execute("SELECT * FROM states WHERE name LIKE %s ORDER BY id ASC",
-                (state_name,))
+    # Secure way to format SQL queries with user input
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+    cursor.execute(query, (state_searched,))
 
-    # Fetch all the rows
-    rows = cur.fetchall()
+    # Fetch all the rows in a list of lists.
+    results = cursor.fetchall()
 
-    # Display the results
-    for row in rows:
-        print(row)
+    # Print the results
+    for state in results:
+        print(state)
 
-    # Close the cursor and database connection
-    cur.close()
+    # Close the cursor and the connection
+    cursor.close()
     db.close()
+
+
+if __name__ == "__main__":
+    filter_states_by_user_input()
