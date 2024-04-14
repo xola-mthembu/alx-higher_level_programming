@@ -7,6 +7,7 @@ protecting against SQL injection.
 import sys
 import MySQLdb
 
+
 def list_cities_by_state():
     """
     Lists all cities of a specified state from the database,
@@ -46,6 +47,7 @@ def list_cities_by_state():
     # Close the cursor and the connection
     cursor.close()
     db.close()
+
 
 if __name__ == "__main__":
     list_cities_by_state()
