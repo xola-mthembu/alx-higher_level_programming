@@ -7,12 +7,10 @@ import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Check if the required arguments are provided
     if len(sys.argv) != 4:
-        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
+        print(f"Usage: {sys.argv[0]} <mysql_usn> <mysql_pw> <database_name>")
         sys.exit(1)
 
-    # Connect to the database
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -21,16 +19,11 @@ if __name__ == "__main__":
         database=sys.argv[3]
     )
 
-    # Get a cursor
     cursor = db.cursor()
-
-    # Execute the query
     cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
 
-    # Fetch and print the results
     for row in cursor.fetchall():
         print(row)
 
-    # Close the connection
     cursor.close()
     db.close()
