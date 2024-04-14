@@ -6,6 +6,7 @@ This module filters states by exact name match from the database hbtn_0e_0_usa.
 import sys
 import MySQLdb
 
+
 def filter_states_by_user_input():
     """
     Connects to the database and filters states by user input.
@@ -36,6 +37,7 @@ def filter_states_by_user_input():
     # Close the cursor and the connection
     cursor.close()
     db.close()
+
 
 if __name__ == "__main__":
     filter_states_by_user_input()
