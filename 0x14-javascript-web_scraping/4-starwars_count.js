@@ -9,20 +9,17 @@ if (process.argv.length <= 2) {
 
 const apiUrl = process.argv[2];
 
-request.get(apiUrl, (err, response, body) => {
-  if (err) {
-    console.error(err);
+request(apiUrl, (error, response, body) => {
+  if (error) {
+    console.error(error);
     return;
   }
-  const movies = JSON.parse(body).results;
-  let count = 0;
-  for (const movie of movies) {
-    for (const characterUrl of movie.characters) {
-      if (characterUrl.endsWith('/18/')) {
-        count++;
-        break;
-      }
+  const films = JSON.parse(body).results;
+  let wedgeCount = 0;
+  films.forEach(film => {
+    if (film.characters.some(character => character.includes('/18/'))) {
+      wedgeCount++;
     }
-  }
-  console.log(count);
+  });
+  console.log(wedgeCount);
 });
