@@ -1,16 +1,28 @@
 #!/usr/bin/node
+
 const request = require('request');
 
-const url = process.argv[2];
+if (process.argv.length <= 2) {
+  console.log('Usage: ./4-starwars_count.js <API_URL>');
+  process.exit(1);
+}
 
-request(url, (err, response, body) => {
+const apiUrl = process.argv[2];
+
+request.get(apiUrl, (err, response, body) => {
   if (err) {
     console.error(err);
     return;
   }
-  const films = JSON.parse(body).results;
-  const count = films.filter(film =>
-    film.characters.includes('https://swapi-api.alx-tools.com/api/people/18/')
-  ).length;
+  const movies = JSON.parse(body).results;
+  let count = 0;
+  for (const movie of movies) {
+    for (const characterUrl of movie.characters) {
+      if (characterUrl.endsWith('/18/')) {
+        count++;
+        break;
+      }
+    }
+  }
   console.log(count);
 });
